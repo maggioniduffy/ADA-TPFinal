@@ -1,7 +1,10 @@
-n = 4
+import sys
+import time
+
+n = int(sys.argv[1])
  
 def isSafe(x, y, board):
-    if(x >= 0 and y >= 0 and x < n and y < n and board[x][y] == -1):
+    if(x >= 0 and y >= 0 and x < n and y < n and board[n * x + y] == -1):
         return True
     return False
  
@@ -9,22 +12,26 @@ def isSafe(x, y, board):
 def printSolution(n, board):
     for i in range(n):
         for j in range(n):
-            print(board[i][j], end=' ')
+            print(board[n * i + j], end=' ')
         print()
  
  
 def solveKT(n):
-    board = [[-1 for i in range(n)]for i in range(n)]
+    board = [-1 for i in range(n*n)]
     move_x = [2, 1, -1, -2, -2, -1, 1, 2]
     move_y = [1, 2, 2, 1, -1, -2, -2, -1]
  
-    board[0][0] = "00"
+    board[0] = "00"
  
     pos = 1
  
+    ts = time.time()
     if(not solveKTUtil(n, board, 0, 0, move_x, move_y, pos)):
         print("Solution does not exist")
     else:
+        tf = time.time()
+        tt = tf * 1000 - ts * 1000
+        print("Time: ", tt)
         printSolution(n, board)
  
  
@@ -38,11 +45,11 @@ def solveKTUtil(n, board, curr_x, curr_y, move_x, move_y, pos):
             pos_aux = str(pos)
             if (pos <= 9):
               pos_aux = "0" + pos_aux
-            board[new_x][new_y] = pos_aux
+            board[n * new_x + new_y] = pos_aux
             if(solveKTUtil(n, board, new_x, new_y, move_x, move_y, pos+1)):
                 return True
  
-            board[new_x][new_y] = -1
+            board[n * new_x + new_y] = -1
     return False
 
 if __name__ == "__main__":
