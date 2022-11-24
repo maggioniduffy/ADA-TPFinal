@@ -1,3 +1,4 @@
+from random import random
 import sys
 import time
 
@@ -18,15 +19,20 @@ def printSolution(n, board):
  
 def solveKT(n):
     board = [-1 for i in range(n*n)]
-    move_x = [2, 1, -1, -2, -2, -1, 1, 2]
-    move_y = [1, 2, 2, 1, -1, -2, -2, -1]
+    move_x = [2, 1, 2, 1, -1, -1, -2, -2]
+    move_y = [-1, -2, 1, 2, -2, 2, 1, -1]
  
-    board[0] = "00"
+    random_x = round(random() * (n-1))
+    random_y = round(random() * (n-1))
+    # random_x = 0
+    # random_y = 0
+    print(random_x,random_y)
+    board[random_x * n + random_y] = "00"
  
     pos = 1
  
     ts = time.time()
-    if(not solveKTUtil(n, board, 0, 0, move_x, move_y, pos)):
+    if(not solveKTUtil(n, board, random_x, random_y, move_x, move_y, pos)):
         print("Solution does not exist")
     else:
         tf = time.time()
