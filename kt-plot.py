@@ -1,6 +1,6 @@
 import time
-
-from plot import plot_times
+import sys
+from plot import plot_errors, plot_times
 
 def isSafe(x, y, n, board):
     if(x >= 0 and y >= 0 and x < n and y < n and board[x][y] == -1):
@@ -56,14 +56,18 @@ def solveKTUtil(n, board, curr_x, curr_y, move_x, move_y, pos):
             board[new_x][new_y] = -1
     return False
 
+n = 8
+if (len(sys.argv) > 1):
+  n = int(sys.argv[1])
+
 if __name__ == "__main__":
   x = []
   y = []
-  for i in range(2,9):
-    yaux = 0
-    for j in range(0,3):   
+  for i in range(2,n):
+    yaux = []
+    for j in range(0,5):   
       res, ok = solveKT(i)
-      yaux += res
+      yaux.append(res * 1000)
     x.append(i)
-    y.append(yaux / 3)
-  plot_times(x,y)
+    y.append(yaux)
+  plot_errors(x,y)
