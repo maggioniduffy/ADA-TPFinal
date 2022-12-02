@@ -1,9 +1,7 @@
-from re import S
-import time
 import pygame
 pygame.init()
 
-n = 4
+n = 6
 SCREEN_WIDTH = 700
 SCREEN_HEIGHT = 700
 white = (255, 255, 255)
@@ -113,7 +111,7 @@ def update_chessboard(pos_x,pos_y,p):
   rect = surf.get_rect()
   screen.blit(surf, (square.x_start, square.y_start))
   pygame.display.flip()
-  pygame.time.wait(1000)
+  pygame.time.wait(500)
 
 def clean_cell(pos_x,pos_y,p):
   square = chess_board[pos_x][pos_y]
@@ -133,4 +131,5 @@ def clean_cell(pos_x,pos_y,p):
   pygame.time.wait(500)
   
 if __name__ == "__main__":
+    print(n)
     solveKT(n)

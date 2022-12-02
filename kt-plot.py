@@ -30,13 +30,13 @@ def solveKT(n):
     if(not solveKTUtil(n, board, 0, 0, move_x, move_y, pos)):
         tf = time.time()
         tt = tf-ti
+        ok = False
         print("Solution does not exist")
     else:
         tf = time.time()
         tt = tf-ti
-        ok = False
         printSolution(n, board)
-
+    print("------------------------------")
     return tt, ok
  
 def solveKTUtil(n, board, curr_x, curr_y, move_x, move_y, pos):
@@ -63,9 +63,9 @@ if (len(sys.argv) > 1):
 if __name__ == "__main__":
   x = []
   y = []
-  for i in range(2,n):
+  for i in range(3,n+1):
     yaux = []
-    for j in range(0,5):   
+    for j in range(0,4):   
       res, ok = solveKT(i)
       yaux.append(res * 1000)
     x.append(i)

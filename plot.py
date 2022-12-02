@@ -17,6 +17,7 @@ def plot_times(x,y):
   plt.show()
   
 def plot_errors(x,y):
+  print(x)
   x = np.array(x)
   y = np.array(y)
   y_errs = []
@@ -34,10 +35,11 @@ def plot_errors(x,y):
   for i in range(0,len(y)):
     st = str(round(y_medias[i],2)) + " \n EMA: " + str(round(y_errs[i],2))
     ax.annotate(st, (x[i], y_medias[i]))
-  ax.set(xlim=(2, len(x)), xticks=np.arange(2, len(x)),
-       ylim=(0, np.max(y)), yticks=np.arange(1, np.max(y), np.max(y)/len(y)))
-
+  ax.set(xlim=(2, max(x)+1), xticks=np.arange(2, max(x)+1),
+       ylim=(0, np.max(y)+200), yticks=np.arange(1, np.max(y), np.max(y)/len(y)))
   plt.grid()
   plt.xlabel("Celdas por lado (n)")
   plt.ylabel("T(n) promedio en ms")
+  plt.figure(figsize=(20, 20))
   plt.show()
+  plt.savefig("kt-media-and-errors.png")
