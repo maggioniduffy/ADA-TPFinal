@@ -56,16 +56,16 @@ def solveKTUtil(n, board, curr_x, curr_y, move_x, move_y, pos):
             board[new_x][new_y] = -1
     return False
 
-n = 8
-if (len(sys.argv) > 1):
-  n = int(sys.argv[1])
+n = int(sys.argv[2])
+b = int(sys.argv[1])
+reps = int(sys.argv[3])
 
 if __name__ == "__main__":
   x = []
   y = []
-  for i in range(3,n+1):
+  for i in range(b,n+1):
     yaux = []
-    for j in range(0,4):   
+    for j in range(0,reps):   
       res, ok = solveKT(i)
       yaux.append(res * 1000)
     x.append(i)

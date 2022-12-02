@@ -1,7 +1,8 @@
 import pygame
+import sys
 pygame.init()
 
-n = 6
+n = int(sys.argv[1])
 SCREEN_WIDTH = 700
 SCREEN_HEIGHT = 700
 white = (255, 255, 255)
